@@ -1,4 +1,3 @@
-import '@/core/style/tailwind.css'
 import ReactDOM from 'react-dom'
 import { HashRouter as Router } from 'react-router-dom'
 import { I18nProvider } from '@i18n'
