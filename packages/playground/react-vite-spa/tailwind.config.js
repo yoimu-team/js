@@ -1,6 +1,9 @@
 module.exports = {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	important: true,
+	corePlugins: {
+		preflight: false,
+	},
 	theme: {
 		screens: {
 			'2xl': { max: '1535px' },
