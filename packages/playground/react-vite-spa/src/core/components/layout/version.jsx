@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useVersion } from '@/core/hooks/use-version'
+import { useGlobal } from '@/core/hooks/use-global'
 import { mergeWords } from '@yoimu/common-lib'
 
 export const Version = ({ className: pclassName }) => {
@@ -8,7 +8,7 @@ export const Version = ({ className: pclassName }) => {
 		[pclassName],
 	)
 
-	const version = useVersion(e => e.version)
+	const version = useGlobal(e => e.version)
 
 	return <div className={className}>{version}</div>
 }
