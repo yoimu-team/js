@@ -8,6 +8,10 @@ import { HttpProvider } from '@/core/hooks/http/use-http'
 import { GlobalProvider } from '@/core/hooks/use-global'
 import '@/core/style/app.scss'
 import '@/core/lib/dev-log'
+import moment from 'moment'
+import 'moment/dist/locale/zh-tw'
+
+moment.locale('zh-tw')
 
 export const App = () => {
 	return (
