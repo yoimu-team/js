@@ -16,6 +16,7 @@ import { useSafeCallback } from './src/use-safe-callback'
 import { useSafeImmer } from './src/use-safe-immer'
 import { useForceUpdate } from './src/use-force-update'
 import { useLoading } from './src/use-loading'
+import { useCacheImmer } from './src/use-cache-immer'
 
 export {
 	createI18n,
@@ -23,6 +24,7 @@ export {
 	createMitt,
 	createProvider,
 	useCacheState,
+	useCacheImmer,
 	useDebounce,
 	useDebounceFunc,
 	useMethods,
