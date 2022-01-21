@@ -1,0 +1,23 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/wuchunwei/_wuchunwei/code/yoimujs"
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "ud-summary@",
+    "stage": "dev",
+    "script": "next dev --port 9298",
+    "pkgname": "ud-summary",
+    "err": {
+      "name": "pnpm",
+      "message": "ud-summary@ dev: `next dev --port 9298`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "pnpm: ud-summary@ dev: `next dev --port 9298`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/opt/homebrew/lib/node_modules/pnpm/dist/pnpm.cjs:91776:22)\n    at ChildProcess.emit (node:events:390:28)\n    at maybeClose (node:internal/child_process:1062:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
+    }
+  },
+  "2 warn pnpm:global": " Local package.json exists, but node_modules missing, did you mean to install?"
+}
