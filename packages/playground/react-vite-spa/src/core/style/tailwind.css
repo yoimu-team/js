@@ -1,4 +1,4 @@
-/*! @import */
+@import "tailwind-preflight.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

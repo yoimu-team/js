@@ -14,5 +14,5 @@ const useService = () => {
 	}
 }
 
-export const { Provider: VersionProvider, inject: useVersion } =
+export const { Provider: GlobalProvider, inject: useGlobal } =
 	createProvider(useService)

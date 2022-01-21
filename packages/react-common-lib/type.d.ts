@@ -82,6 +82,8 @@ export function useCacheState<T>(
 	initialValue: T,
 ): [T, (arg: T | ((arg: T) => T)) => void]
 
+export function useCacheImmer<S = any>(initialValue: S | (() => S)): ImmerHook<S>
+
 export function useDebounce<T>(callback: T, deps: any[], delay?: number): void
 
 // TODO type 沒意外是錯的

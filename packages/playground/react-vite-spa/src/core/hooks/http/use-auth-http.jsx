@@ -41,9 +41,9 @@ function AuthHttpProvider({ children }) {
 							message.error(res.data.message)
 						}
 					}
-				}
-				if (res.status === 401 || res.status === 403) {
-					emit(AUTHORIZATION_FAILED)
+					if (res.status === 401 || res.status === 403) {
+						emit(AUTHORIZATION_FAILED)
+					}
 				}
 				return Promise.resolve(res)
 			},
