@@ -16,7 +16,7 @@
 
 ## react-native-lib
 
-> react native
+> react native 開發中的 尚不完全
 
 ## react-web-lib
 
