@@ -40,8 +40,8 @@
 
 ```typescript
 function useLocalStorageState<T>(
-	key: string, // localstorage 的名稱
-	initialValue: T,
+  key: string, // localstorage 的名稱
+  initialValue: T,
 ): [T, Dispatch<SetStateAction<T>>]
 ```
 
