@@ -51,3 +51,7 @@ function useLocalStorageState<T>(
 const [count, setCount] = useLocalStorageState('count', 0)
 // 其他同 useState，可以看到 localStorage 的值會同步變動
 ```
+
+### useSessionStorageState
+
+> 同 useLocalStorageState 只是將資料存到 sessionStorage
