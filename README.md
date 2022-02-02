@@ -54,4 +54,4 @@ const [count, setCount] = useLocalStorageState('count', 0)
 
 ### useSessionStorageState
 
-> 同 useLocalStorageState 只是將資料存到 sessionStorage
+> 同 [useLocalStorageState](https://github.com/yoimu-team/js#uselocalstoragestate) 只是將資料存到 sessionStorage
