@@ -55,3 +55,18 @@ const [count, setCount] = useLocalStorageState('count', 0)
 ### useSessionStorageState
 
 > 同 [useLocalStorageState](https://github.com/yoimu-team/js#uselocalstoragestate) 只是將資料存到 sessionStorage
+
+### useTitle
+
+> 更換頁面 title
+
+```typescript
+function useTitle(title: string, restoreOnUnmount?: boolean): string
+```
+
+```javascript
+function Component() {
+  useTitle('hello yoimu') // 將頁面抬頭改成 hello yoimu
+  // useTitle('hello yoimu', true) // 第 2 個參數預設為 false, 是否在頁面銷毀時返回上個標題
+}
+```
