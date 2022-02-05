@@ -8,6 +8,23 @@
 
 > 全平台
 
+### stepPrice
+
+> 數字加逗號
+
+#### 類型
+
+```typescript
+function stepPrice(price: string | number, step?: number): string
+```
+
+#### 使用
+
+```javascript
+stepPrice(1000) // 1,000
+stepPrice(1000, 2) // 10,00 第二個參數為幾位數打一個逗號，預設為千(3位)
+```
+
 ---
 
 ## web-lib
