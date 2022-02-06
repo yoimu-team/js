@@ -47,6 +47,22 @@ function copyText(value: number | string): string
 copyText("複製的文字")
 ```
 
+### checkMobile
+
+> 檢測是否是移動裝置，這僅檢測此，想要更全面的檢測建議套外部庫
+
+#### 類型
+
+```typescript
+function checkMobile(): boolean
+```
+
+#### 使用
+
+```javascript
+checkMobile() // false
+```
+
 ---
 
 ## react-common-lib
