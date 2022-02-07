@@ -31,6 +31,22 @@ stepPrice(1000, 2) // 10,00 第二個參數為幾位數打一個逗號，預設�
 
 > 網頁
 
+### copyText
+
+> 複製文字
+
+#### 類型
+
+```typescript
+function copyText(value: number | string): string
+```
+
+#### 使用
+
+```javascript
+copyText("複製的文字")
+```
+
 ---
 
 ## react-common-lib
