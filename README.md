@@ -69,6 +69,18 @@ checkMobile() // false
 
 > react 全平台
 
+### useSafeState
+
+> 使用同 useState，與其只差在使用該鉤子不會有內存泄露的問題
+
+### 類型
+
+同 useState
+
+### 用法
+
+同 useState
+
 ---
 
 ## react-native-lib
@@ -109,9 +121,13 @@ const [count, setCount] = useLocalStorageState('count', 0)
 
 > 更換頁面 title
 
+#### 類型
+
 ```typescript
 function useTitle(title: string, restoreOnUnmount?: boolean): string
 ```
+
+#### 使用
 
 ```javascript
 function Component() {
@@ -119,18 +135,6 @@ function Component() {
   // useTitle('hello yoimu', true) // 第 2 個參數預設為 false, 是否在頁面銷毀時返回上個標題
 }
 ```
-
-### useSafeState
-
-> 使用同 useState，與其只差在使用該鉤子不會有內存泄露的問題
-
-### 類型
-
-同 useState
-
-### 用法
-
-同 useState
 
 
 
