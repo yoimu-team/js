@@ -81,6 +81,28 @@ checkMobile() // false
 
 同 useState
 
+### useCacheState
+
+> 使用同 useState，該鉤子會將數據緩存在內存，當你離開又回來組件你會看到數據仍是最後的數據
+
+### 類型
+
+```typescript
+function useCacheState<T>(
+  symbol: Symbol, // 唯一值
+  initialValue: T,
+): [T, Dispatch<SetStateAction<T>>]
+```
+
+### 用法
+
+```javascript
+const sym = Symbol()
+function Comp() {
+  const [count, setCount] = useCacheState(sym, 0) // 調用同 useState
+}
+```
+
 ---
 
 ## react-native-lib
