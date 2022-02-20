@@ -25,6 +25,24 @@ stepPrice(1000) // 1,000
 stepPrice(1000, 2) // 10,00 第二個參數為幾位數打一個逗號，預設為千(3位)
 ```
 
+### mergeWords
+
+> 條件合併文字
+
+#### 類型
+
+```typescript
+function mergeWords(...conditionTextArr: any[]): string
+```
+
+#### 使用
+
+```javascript
+mergeWords('a', 'b') // 'a b'
+mergeWords('a', true ? 'b' : 'c') // 'a b'
+mergeWords('a', true && 'b', false && 'c') // 'a b'
+```
+
 ---
 
 ## web-lib
