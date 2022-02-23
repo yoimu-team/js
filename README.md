@@ -125,7 +125,7 @@ function Comp() {
 
 ## react-native-lib
 
-> react native 開發中的 尚不完全
+> 終止開發
 
 ---
 
