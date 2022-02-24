@@ -9,7 +9,7 @@
 > 全平台
 
 ```cmd
-npm i @yoimu-js/common-lib
+npm i @yoimu/common-lib
 ```
 
 ### stepPrice
