@@ -8,6 +8,10 @@
 
 > 全平台
 
+```cmd
+npm i @yoimu-js/common-lib
+```
+
 ### stepPrice
 
 > 數字加逗號
