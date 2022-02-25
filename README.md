@@ -6,11 +6,11 @@
 
 ## common-lib
 
-> 全平台
-
 ```cmd
 npm i @yoimu/common-lib
 ```
+
+> 全平台
 
 ### stepPrice
 
@@ -51,6 +51,10 @@ mergeWords('a', true && 'b', false && 'c') // 'a b'
 
 ## web-lib
 
+```cmd
+npm i @yoimu/web-lib
+```
+
 > 網頁
 
 ### copyText
@@ -88,6 +92,10 @@ checkMobile() // false
 ---
 
 ## react-common-lib
+
+```cmd
+npm i @yoimu/react-common-lib
+```
 
 > react 全平台
 
@@ -134,6 +142,10 @@ function Comp() {
 ---
 
 ## react-web-lib
+
+```cmd
+npm i @yoimu/react-web-lib
+```
 
 > react 網頁
 
