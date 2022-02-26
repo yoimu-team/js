@@ -1,7 +1,5 @@
 # yoimu-js
 
-> 前端開發的庫與模板，目前僅提供 esm，有提供 ts 類型定義
-
 ---
 
 ## common-lib
@@ -135,12 +133,6 @@ function Comp() {
 
 ---
 
-## react-native-lib
-
-> 終止開發
-
----
-
 ## react-web-lib
 
 ```cmd
@@ -194,26 +186,8 @@ function Component() {
 
 ---
 
-## create-app
-
-> 用來拉取模板的腳手架(開發中)
-
----
-
 ## playground/react-vite-spa
 
-> spa 開發模板(完善)
-
----
-
-## playground/react-native
-
-> rn 開發模板(開發中)
-
----
-
-## playground/next
-
-> next 開發模板(開發中)
+> spa 開發模板
 
 
