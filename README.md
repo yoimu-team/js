@@ -193,5 +193,26 @@ function Component() {
 ### 目錄結構
 
 ```text
-
+├─ build-script # 建制腳本，目前只用來進行版號轉換
+├─ public # vite 預設的資源路徑
+└─ src # 主目錄
+│  ├─ components # 頁面用的組件目錄
+│  ├─ core # 路由、身份等全局處理目錄
+│  ├─ enums # 全局用的 enums(建議使用 declareEnum 撰寫)
+│  ├─ hooks # 頁面用的鉤子函數
+│  ├─ lib # 頁面用的非鉤子通用函數
+│  └- pages # 頁面目錄
+├─ .env # 通用環境變量
+├─ .env.development # 開發用環境變量
+├─ .env.production # 正式線用環境變量
+├─ .env.qa # 測試線用環境變量
+├─ .gitignore
+├─ .prettierrc
+├─ .README.mnd
+├─ .idea.config.js # 因為主要用 jetbrains 全家桶開發，這是用來配置 vite alias 給 ide 知道
+├─ index.html
+├─ package.json # 建議使用 pnpm 安裝
+├─ postcss.config.js
+├─ tailwind.config.js # 基本上配置同 antd 色系，預設 v3，所以全面使用 JIT
+└─ vite.config.js # vite 配置
 ```
