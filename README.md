@@ -192,7 +192,7 @@ function Component() {
 
 ### 目錄結構
 
-```cmd
+```
 ├─ build-script # 建制腳本，目前只用來進行版號轉換
 ├─ public # vite 預設的資源路徑
 └─ src # 主目錄
