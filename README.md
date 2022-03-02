@@ -208,7 +208,7 @@ function Component() {
 ├─ .env.qa # 測試線用環境變量
 ├─ .gitignore
 ├─ .prettierrc
-├─ .README.mnd
+├─ .README.md
 ├─ .idea.config.js # 因為主要用 jetbrains 全家桶開發，這是用來配置 vite alias 給 ide 知道
 ├─ index.html
 ├─ package.json # 建議使用 pnpm 安裝
