@@ -188,7 +188,7 @@ function Component() {
 
 ## playground/react-vite-spa
 
-> spa 開發模板
+> spa 開發模板，已寫好 i18n 語法，如果項目不需要需要自行砍代碼，可察看以下教學
 
 ### 目錄結構
 
