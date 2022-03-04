@@ -1,10 +1,12 @@
 # yoimu-js
 
-> 前端開發的庫與模板，目前僅提供 esm，有提供 ts 類型定義
-
 ---
 
 ## common-lib
+
+```cmd
+npm i @yoimu/common-lib
+```
 
 > 全平台
 
@@ -47,6 +49,10 @@ mergeWords('a', true && 'b', false && 'c') // 'a b'
 
 ## web-lib
 
+```cmd
+npm i @yoimu/web-lib
+```
+
 > 網頁
 
 ### copyText
@@ -84,6 +90,10 @@ checkMobile() // false
 ---
 
 ## react-common-lib
+
+```cmd
+npm i @yoimu/react-common-lib
+```
 
 > react 全平台
 
@@ -123,13 +133,11 @@ function Comp() {
 
 ---
 
-## react-native-lib
-
-> react native 開發中的 尚不完全
-
----
-
 ## react-web-lib
+
+```cmd
+npm i @yoimu/react-web-lib
+```
 
 > react 網頁
 
@@ -178,26 +186,33 @@ function Component() {
 
 ---
 
-## create-app
-
-> 用來拉取模板的腳手架(開發中)
-
----
-
 ## playground/react-vite-spa
 
-> spa 開發模板(完善)
+> spa 開發模板，已寫好 i18n 語法，如果項目不需要需要自行砍代碼，可察看以下教學
 
----
+### 目錄結構
 
-## playground/react-native
-
-> rn 開發模板(開發中)
-
----
-
-## playground/next
-
-> next 開發模板(開發中)
-
-
+```shell
+├─ build-script # 建制腳本，目前只用來進行版號轉換
+├─ public # vite 預設的資源路徑
+└─ src # 主目錄
+│  ├─ components # 頁面用的組件目錄
+│  ├─ core # 路由、身份等全局處理目錄
+│  ├─ enums # 全局用的 enums(建議使用 declareEnum 撰寫)
+│  ├─ hooks # 頁面用的鉤子函數
+│  ├─ lib # 頁面用的非鉤子通用函數
+│  └- pages # 頁面目錄
+├─ .env # 通用環境變量
+├─ .env.development # 開發用環境變量
+├─ .env.production # 正式線用環境變量
+├─ .env.qa # 測試線用環境變量
+├─ .gitignore
+├─ .prettierrc
+├─ .README.md
+├─ .idea.config.js # 因為主要用 jetbrains 全家桶開發，這是用來配置 vite alias 給 ide 知道
+├─ index.html
+├─ package.json # 建議使用 pnpm 安裝
+├─ postcss.config.js
+├─ tailwind.config.js # 基本上配置同 antd 色系，預設 v3，所以全面使用 JIT
+└─ vite.config.js # vite 配置
+```
