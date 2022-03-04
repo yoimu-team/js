@@ -1,7 +1,8 @@
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
+import { useSafeState } from './use-safe-state'
 
 export const useEditorList = (initialValueFunc, init = true) => {
-	const [list, setList] = useState(() => (init ? [initialValueFunc()] : []))
+	const [list, setList] = useSafeState(() => (init ? [initialValueFunc()] : []))
 
 	const create = useCallback(
 		() => setList(e => [...e, initialValueFunc()]),
@@ -24,7 +25,7 @@ export const useEditorList = (initialValueFunc, init = true) => {
 			setList(e => {
 				if (index < 0 || index > e.length - 1) return e
 				const e2 = e.slice()
-				e2[index][key] = value
+				e2[index] = { ...e2[index], [key]: value }
 				return e2
 			}),
 		[setList],
