@@ -216,3 +216,7 @@ function Component() {
 ├─ tailwind.config.js # 基本上配置同 antd 色系，預設 v3，所以全面使用 JIT
 └─ vite.config.js # vite 配置
 ```
+
+### 路由使用
+
+> 有 ``
