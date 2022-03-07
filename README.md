@@ -219,4 +219,7 @@ function Component() {
 
 ### 路由使用
 
-> 有 ``
+> 路徑為 `src/core/routes.jsx `，全頁面路由統一放置於此，比較好管理，其中分別提供了四個路由方法，分別是`withPrivateRoute`, `withRoute`, `withSuspensePrivateRoute`, `withSuspenseRoute`，後兩者是前兩者的 Suspense 版本，通常選擇後者
+
+* `withPrivateRoute` 創建私有路由，會透過 auth 驗證
+* `withRoute` 創建公共路由
