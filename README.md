@@ -217,6 +217,10 @@ function Component() {
 └─ vite.config.js # vite 配置
 ```
 
+### core/app.jsx
+
+預設有這幾隻 Provider：`I18nProvider` > `GlobalProvider` > `HttpProvider` > `AuthProvider` > `AuthHttpProvider`
+
 ### 路由使用
 
 > 路徑為 `src/core/routes.jsx `，全頁面路由統一放置於此，比較好管理，其中分別提供了四個路由方法，分別是`withPrivateRoute`, `withRoute`, `withSuspensePrivateRoute`, `withSuspenseRoute`，後兩者是前兩者的 Suspense 版本，通常選擇後者
