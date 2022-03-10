@@ -219,7 +219,7 @@ function Component() {
 
 ### core/app.jsx
 
-預設有這幾隻 Provider：`I18nProvider` > `GlobalProvider` > `HttpProvider` > `AuthProvider` > `AuthHttpProvider`
+預設有這幾隻 Provider：`I18nProvider` > `GlobalProvider` > `HttpProvider` > `AuthProvider` > `AuthHttpProvider`，使用 `useContextSelector` 撰寫
 
 ### 路由使用
 
