@@ -4,11 +4,12 @@ import produce from 'immer'
 export const useEditorList = (initialValueFunc, init = true) => {
 	const [list, setList] = useSafeState(() => (init ? [initialValueFunc()] : []))
 
-	const create = setList(
-		produce(d => {
-			d.push(initialValueFunc())
-		}),
-	)
+	const create = () =>
+		setList(
+			produce(d => {
+				d.push(initialValueFunc())
+			}),
+		)
 
 	const editByIndex = (index, value) => {
 		if (index < 0 || index > list.length - 1) return
