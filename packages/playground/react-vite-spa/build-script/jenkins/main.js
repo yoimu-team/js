@@ -3,11 +3,13 @@ const getCommandArgs = require('../lib/get-command-args')
 
 const defaultArgs = {
 	branch: 'qa',
-	mode: 'qa',
 	gitTag: 'nil',
+	mode: '',
 	packageManager: 'npm',
+	appVersionPrefixRemoveRegExp: null,
 }
-const { branch, mode, gitTag, packageManager } = getCommandArgs(defaultArgs)
+const { branch, mode, gitTag, packageManager, appVersionPrefixRemoveRegExp } =
+	getCommandArgs(defaultArgs)
 let chooseGitTag = gitTag
 
 console.log(`jenkins git parameter git_tag: ${chooseGitTag}`)
@@ -29,7 +31,7 @@ execSync('npm install', { stdio: 'inherit' })
 console.log(`安裝依賴完成，開始打包專案`)
 
 execSync(
-	`node build-script/build.js --appVersion=${chooseGitTag} --mode=${mode} --packageManager=${packageManager}`,
+	`node build-script/build.js --appVersion=${chooseGitTag} --mode=${mode} --packageManager=${packageManager} --appVersionPrefixRemoveRegExp=${appVersionPrefixRemoveRegExp}`,
 	{ stdio: 'inherit' },
 )
 
