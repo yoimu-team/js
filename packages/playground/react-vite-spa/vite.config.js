@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
-import { minifyHtml, injectHtml } from 'vite-plugin-html'
+import { createHtmlPlugin } from 'vite-plugin-html'
 import react from '@vitejs/plugin-react'
-import styleImport, { AntdResolve } from 'vite-plugin-style-import'
+import { createStyleImportPlugin, AntdResolve } from 'vite-plugin-style-import'
 import reactSvgPlugin from 'vite-plugin-react-svg'
 const path = require('path')
 
@@ -16,7 +16,7 @@ export default ({ mode }) => {
 				defaultExport: 'component',
 				expandProps: 'end',
 			}),
-			styleImport({
+			createStyleImportPlugin({
 				resolves: [AntdResolve()],
 				// antd-mobile 樣式按需引入(未測過)
 				// libs: [
@@ -29,10 +29,12 @@ export default ({ mode }) => {
 				// 	},
 				// ],
 			}),
-			minifyHtml(),
-			injectHtml({
-				data: {
-					title: process.env.VITE_COMMON_APP_TITLE,
+			createHtmlPlugin({
+				minify: true,
+				inject: {
+					data: {
+						title: process.env.VITE_COMMON_APP_TITLE,
+					},
 				},
 			}),
 		],
