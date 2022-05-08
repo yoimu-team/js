@@ -6,7 +6,9 @@
   "author": "wcw850710",
   "license": "ISC",
   "scripts": {
-    "clean": "rm -rf node_modules **/*/node_modules"
+    "clean": "rm -rf node_modules **/*/node_modules",
+    "build:common-lib": "rollup -c ./packages/common-lib/rollup.config.js",
+    "publish:common-lib": "concurrently \"pnpm run build:common-lib\" \"pnpm publish ./packages/common-lib\""
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.14",
@@ -18,8 +20,12 @@
     "use-immer": "^0.6.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/node": "^17.0.0",
     "@types/react": "^17.0.37",
-    "prettier": "^2.5.1"
+    "concurrently": "^7.1.0",
+    "prettier": "^2.5.1",
+    "rollup": "^2.72.1"
   }
 }
