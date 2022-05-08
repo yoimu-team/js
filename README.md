@@ -204,7 +204,7 @@ function Component() {
 │  └- pages # 頁面目錄
 ├─ .env # 通用環境變量
 ├─ .env.development # 開發用環境變量
-├─ .env.production # 正式線用環境變量
+├─ .env.master # 正式線用環境變量
 ├─ .env.qa # 測試線用環境變量
 ├─ .gitignore
 ├─ .prettierrc
