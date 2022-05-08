@@ -7,8 +7,11 @@
   "license": "ISC",
   "scripts": {
     "clean": "rm -rf node_modules **/*/node_modules",
-    "build:common-lib": "rollup -c ./packages/common-lib/rollup.config.js",
-    "publish:common-lib": "concurrently \"pnpm run build:common-lib\" \"pnpm publish ./packages/common-lib\""
+    "publish:common-lib": "concurrently \"rollup -c ./packages/common-lib/rollup.config.js\" \"pnpm publish ./packages/common-lib\"",
+    "publish:web-lib": "pnpm publish ./packages/web-lib",
+    "publish:create-app": "pnpm publish ./packages/create-app",
+    "publish:react-native-lib": "pnpm publish ./packages/react-native-lib",
+    "publish:react-web-lib": "pnpm publish ./packages/react-web-lib"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.14",
