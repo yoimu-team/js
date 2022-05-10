@@ -1,5 +1,6 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { createProvider } from './create-provider'
+import { useSafeState } from './use-safe-state'
 
 // 將 {0, 1, ...} 值轉換
 const t = (text, replaceArgs = []) => {
@@ -15,7 +16,7 @@ const t = (text, replaceArgs = []) => {
 const useService =
 	({ defaultLocale, languages, langRef }) =>
 	() => {
-		const [locale, setLocale] = useState(defaultLocale)
+		const [locale, setLocale] = useSafeState(defaultLocale)
 		const lang = useMemo(() => languages[locale] || {}, [locale])
 		const changeLocale = useCallback(
 			plocale => {
@@ -27,6 +28,7 @@ const useService =
 
 		return {
 			lang,
+			t,
 			locale,
 			changeLocale,
 		}
@@ -38,14 +40,15 @@ export const createLang = ({
 	typeBindObj,
 } = {}) => {
 	const languages = plangauges || {}
-	for (let key in languages) {
-		languages[key].$t = t
-	}
-
-	let langRef = { current: languages[defaultLocale] || {} }
+	const _defaultLocale =
+		languages[defaultLocale] != null ? defaultLocale : Object.keys(languages)[0]
+	const langRef = { current: languages[_defaultLocale] || {} }
 
 	return {
 		langRef,
-		...createProvider(useService({ defaultLocale, languages, langRef })),
+		t,
+		...createProvider(
+			useService({ defaultLocale: _defaultLocale, languages, langRef }),
+		),
 	}
 }

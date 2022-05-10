@@ -47,19 +47,18 @@ export function createI18n<
 	}>
 }
 
-type CreateLangTranslate = <T = string>(text: T, replaceArgs: any[]) => T
-export function createLang<
-	T extends object,
-	Lang = T & { $t: CreateLangTranslate },
->(options: {
+type CreateLangTranslate = <T = string>(text: T, replaceArgs?: any[]) => T
+export function createLang<T extends object>(options: {
 	defaultLocale: string
 	languages: object
 	typeBindObj: T
 }): {
-	langRef: { current: Lang }
+	langRef: { current: T }
+	t: CreateLangTranslate
 	Provider: ServiceProvider
 	inject: ServiceInject<{
-		lang: Lang
+		lang: T
+		t: CreateLangTranslate
 		locale: string
 		changeLocale: (locale: string) => void
 	}>
@@ -82,7 +81,9 @@ export function useCacheState<T>(
 	initialValue: T,
 ): [T, (arg: T | ((arg: T) => T)) => void]
 
-export function useCacheImmer<S = any>(initialValue: S | (() => S)): ImmerHook<S>
+export function useCacheImmer<S = any>(
+	initialValue: S | (() => S),
+): ImmerHook<S>
 
 export function useDebounce<T>(callback: T, deps: any[], delay?: number): void
 
