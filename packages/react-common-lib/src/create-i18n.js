@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createProvider } from './create-provider'
 import { findNestedDynamicObj } from '@yoimu/common-lib'
+import {
+	useLocalStorageState,
+	useSessionStorageState,
+} from '@yoimu/react-web-lib'
 
 const translate = (messages, nestedKey, replaceArrayStr = []) => {
 	let v = findNestedDynamicObj(messages, nestedKey)
@@ -14,9 +18,21 @@ const translate = (messages, nestedKey, replaceArrayStr = []) => {
 }
 
 const service =
-	({ messages, locale: initialLocale, _setLocale, t: _t }) =>
+	({
+		messages,
+		locale: initialLocale,
+		localStorageKey,
+		sessionStorageKey,
+		_setLocale,
+		t: _t,
+	}) =>
 	() => {
-		const [locale, changeLocale] = useState(initialLocale)
+		const [locale, changeLocale] =
+			localStorageKey != null
+				? useLocalStorageState(localStorageKey, initialLocale)
+				: sessionStorageKey != null
+				? useSessionStorageState(sessionStorageKey, initialLocale)
+				: useState(initialLocale)
 
 		const t = useCallback(
 			(nestedKey, replaceArrayStr = []) =>
@@ -35,7 +51,12 @@ const service =
 		}
 	}
 
-export const createI18n = ({ locale, messages } = {}) => {
+export const createI18n = ({
+	locale,
+	messages,
+	localStorageKey,
+	sessionStorageKey,
+} = {}) => {
 	let _locale = locale
 	const _setLocale = locale => (_locale = locale)
 
@@ -44,6 +65,14 @@ export const createI18n = ({ locale, messages } = {}) => {
 
 	return {
 		t,
-		...createProvider(service({ locale, messages, _setLocale })),
+		...createProvider(
+			service({
+				locale,
+				localStorageKey,
+				sessionStorageKey,
+				messages,
+				_setLocale,
+			}),
+		),
 	}
 }

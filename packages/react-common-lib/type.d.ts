@@ -37,6 +37,8 @@ export function createI18n<
 >(options: {
 	locale: K
 	messages: T
+	localStorageKey: string
+	sessionStorageKey: string
 }): {
 	t: i18nT
 	Provider: ServiceProvider

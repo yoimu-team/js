@@ -173,6 +173,7 @@ importers:
   packages/react-common-lib:
     specifiers:
       '@yoimu/common-lib': workspace:^
+      '@yoimu/react-web-lib': workspace:^
       immer: ^9.0.7
       mitt: ^3.0.0
       react: ^17.0.2
@@ -180,6 +181,7 @@ importers:
       use-immer: ^0.6.0
     dependencies:
       '@yoimu/common-lib': link:../common-lib
+      '@yoimu/react-web-lib': link:../react-web-lib
       immer: 9.0.7
       mitt: 3.0.0
       react: 17.0.2

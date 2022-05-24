@@ -1,6 +1,6 @@
 {
   "name": "@yoimu/react-common-lib",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "",
   "main": "index.js",
   "typings": "type.d.ts",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@yoimu/common-lib": "workspace:^",
+    "@yoimu/react-web-lib": "workspace:^",
     "mitt": "^3.0.0",
     "react": "^17.0.2",
     "use-context-selector": "^1.3.9",
