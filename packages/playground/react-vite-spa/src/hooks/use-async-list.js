@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useQueryString } from '@yoimu/react-web-lib'
 import { useAsync } from '@/hooks/use-async'
-import { useAuthHttp } from '@/core/hooks/http/use-auth-http'
+import { useHttp } from '@/core/hooks/http/use-http'
 
 /**
  * @type {
@@ -19,7 +19,7 @@ import { useAuthHttp } from '@/core/hooks/http/use-auth-http'
  * }
  */
 export const useAsyncList = (httpPath, initQueryString) => {
-	const { _http } = useAuthHttp()
+	const http = useHttp()
 	const [queryString, setQueryString] = useQueryString({
 		number: 1,
 		size: 10,
@@ -27,7 +27,7 @@ export const useAsyncList = (httpPath, initQueryString) => {
 	})
 	const [search, setSearch] = useState({ ...queryString })
 	const [[dataSource, total], loading, getList] = useAsync(async () => {
-		const { data } = await _http.post(httpPath, queryString)
+		const { data } = await http.instance.post(httpPath, queryString)
 		return [data.data?.content ?? [], data.data?.totalElements ?? 0]
 	})
 	const onChangeSearch = key => value =>

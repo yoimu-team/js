@@ -1,10 +1,10 @@
 import axios, { AxiosInstance } from 'axios'
 
 /**
- * @return {{http: AxiosInstance}}
+ * @return {{instance: AxiosInstance}}
  */
 export const createHttp = () => ({
-	http: axios.create({
+	instance: axios.create({
 		baseURL: import.meta.env.VITE_API_BASE_URL,
 	}),
 })

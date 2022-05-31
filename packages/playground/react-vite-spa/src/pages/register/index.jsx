@@ -7,7 +7,7 @@ import { useHttp } from '@/core/hooks/http/use-http'
 
 export default () => {
 	const history = useHistory()
-	const { http } = useHttp()
+	const http = useHttp()
 	const [submitLoading, setSubmitLoading] = useState(false)
 	const setAuth = useAuth(e => e.setAuth)
 	const setToken = useAuth(e => e.setToken)

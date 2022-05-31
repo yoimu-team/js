@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef } from 'react'
-import { useAuthHttp } from '@/core/hooks/http/use-auth-http'
 import { Button, message, Tag, Upload } from 'antd'
 import { createClassName } from '@yoimu/web-lib'
 import {
@@ -9,6 +8,7 @@ import {
 } from '@ant-design/icons'
 import { nearSort } from '@/lib/near-sort'
 import { useSafeState } from '@yoimu/react-common-lib'
+import { useHttp } from '@/core/hooks/http/use-http'
 
 export const UploadFiles = ({
 	className,
@@ -23,7 +23,7 @@ export const UploadFiles = ({
 	placeholder,
 	disabled = false,
 }) => {
-	const { _http } = useAuthHttp()
+	const http = useHttp()
 	const name = useMemo(() => (onlyImage ? '圖片' : '檔案'), [onlyImage])
 	const multipleFileListBufferRef = useRef({
 		start: 0,
@@ -104,7 +104,10 @@ export const UploadFiles = ({
 			lockUpdateRef.current++
 			setUpLoading(true)
 			try {
-				const { data } = await _http.post(`/file/batch/uploadPic`, formData)
+				const { data } = await http.instance.post(
+					`/file/batch/uploadPic`,
+					formData,
+				)
 				if (data.success) {
 					const newFileList = [...fileList, ...data.data]
 					setFileList(newFileList)
@@ -119,7 +122,7 @@ export const UploadFiles = ({
 		lockUpdateRef.current++
 		setUpLoading(true)
 		try {
-			const { data } = await _http.post(`/file/uploadPic`, formData)
+			const { data } = await http.instance.post(`/file/uploadPic`, formData)
 			if (data.success) {
 				let newFileList
 				if (only) {

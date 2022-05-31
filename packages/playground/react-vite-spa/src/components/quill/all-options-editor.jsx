@@ -3,7 +3,7 @@ import { createClassName } from '@yoimu/web-lib'
 import { Upload } from 'antd'
 import { PictureOutlined } from '@ant-design/icons'
 import { useCallback, useRef } from 'react'
-import { useAuthHttp } from '@/core/hooks/http/use-auth-http'
+import { useHttp } from '@/core/hooks/http/use-http'
 
 // Custom Undo button icon component for Quill editor. You can import it directly
 // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
@@ -94,12 +94,12 @@ export const quillAllFormats = [
 
 // Quill Toolbar component
 export const QuillAllOptionsToolbar = ({ id, editorRef, rangeRef }) => {
-	const { _http } = useAuthHttp()
+	const http = useHttp()
 
 	const beforeUpload = async file => {
 		const formData = new FormData()
 		formData.append('file', file)
-		const { data } = await _http.post(`/file/uploadPic`, formData)
+		const { data } = await http.instance.post(`/file/uploadPic`, formData)
 		if (data.success) {
 			const current = editorRef.current
 			if (current) {

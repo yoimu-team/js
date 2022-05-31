@@ -1,16 +1,16 @@
-import { useAuthHttp } from '@/core/hooks/http/use-auth-http'
 import { useCallback } from 'react'
 import { message } from 'antd'
 import { downloadBlob } from '@yoimu/web-lib'
+import { useHttp } from '@/core/hooks/http/use-http'
 
 export const useExportFile = () => {
-	const { _http } = useAuthHttp()
+	const http = useHttp()
 
 	const exportExcel = useCallback(
 		async (url, filename, successMessage, extension = 'xlsx') => {
 			const res = await (typeof url === 'function'
 				? url()
-				: _http.get(url, {
+				: http.instance.get(url, {
 						responseType: 'blob',
 				  }))
 			if (res.status === 200) {
@@ -18,7 +18,7 @@ export const useExportFile = () => {
 				downloadBlob(res.data, filename, extension)
 			}
 		},
-		[_http],
+		[http],
 	)
 
 	return [exportExcel]
