@@ -17,11 +17,13 @@ import { useSafeImmer } from './src/use-safe-immer'
 import { useForceUpdate } from './src/use-force-update'
 import { useLoading } from './src/use-loading'
 import { useCacheImmer } from './src/use-cache-immer'
+import { createContextProvider } from './src/create-context-provider'
 
 export {
 	createI18n,
 	createLang,
 	createMitt,
+	createContextProvider,
 	createProvider,
 	useCacheState,
 	useCacheImmer,

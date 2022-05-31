@@ -28,6 +28,7 @@ type Paths<T, D extends number = 10> = [D] extends [never]
 
 type ServiceProvider = (prop: { children: ReactElement }) => ReactElement
 type ServiceInject<T> = <V>(getter: (e: T) => V) => V
+type ContextServiceInject<T> = () => T
 
 export function createI18n<
 	T extends object,
@@ -76,6 +77,11 @@ export function createMitt(): {
 export function createProvider<T>(providerService: () => T): {
 	Provider: ServiceProvider
 	inject: ServiceInject<T>
+}
+
+export function createContextProvider<T>(providerService: () => T): {
+	Provider: ServiceProvider
+	inject: ContextServiceInject<T>
 }
 
 export function useCacheState<T>(
