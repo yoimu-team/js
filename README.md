@@ -186,6 +186,13 @@ function Component() {
 
 ---
 
+## playground/react-vite-spa-next-lite
+## playground/react-vite-spa-next-i18n-lite
+## playground/react-vite-spa-next-auth-lite
+## playground/react-vite-spa-next
+## playground/react-vite-spa-lite
+## playground/react-vite-spa-i18n-lite
+## playground/react-vite-spa-auth-lite
 ## playground/react-vite-spa
 
 > spa 開發模板，已寫好 i18n 語法，如果項目不需要需要自行砍代碼，可察看以下教學
@@ -195,13 +202,13 @@ function Component() {
 ```shell
 ├─ build-script # 建制腳本，目前只用來進行版號轉換
 ├─ public # vite 預設的資源路徑
-└─ src # 主目錄
+├─ src # 主目錄
 │  ├─ components # 頁面用的組件目錄
 │  ├─ core # 路由、身份等全局處理目錄
 │  ├─ enums # 全局用的 enums(建議使用 declareEnum 撰寫)
 │  ├─ hooks # 頁面用的鉤子函數
 │  ├─ lib # 頁面用的非鉤子通用函數
-│  └- pages # 頁面目錄
+│  └─ pages # 頁面目錄
 ├─ .env # 通用環境變量
 ├─ .env.development # 開發用環境變量
 ├─ .env.master # 正式線用環境變量
