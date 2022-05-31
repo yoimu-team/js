@@ -99,7 +99,7 @@ export const QuillAllOptionsToolbar = ({ id, editorRef, rangeRef }) => {
 	const beforeUpload = async file => {
 		const formData = new FormData()
 		formData.append('file', file)
-		const { data } = await http.instance.post(`/file/uploadPic`, formData)
+		const { data } = await http.file.upload(formData)
 		if (data.success) {
 			const current = editorRef.current
 			if (current) {

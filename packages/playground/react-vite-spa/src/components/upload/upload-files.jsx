@@ -104,10 +104,7 @@ export const UploadFiles = ({
 			lockUpdateRef.current++
 			setUpLoading(true)
 			try {
-				const { data } = await http.instance.post(
-					`/file/batch/uploadPic`,
-					formData,
-				)
+				const { data } = await http.file.upload(formData)
 				if (data.success) {
 					const newFileList = [...fileList, ...data.data]
 					setFileList(newFileList)
@@ -122,7 +119,7 @@ export const UploadFiles = ({
 		lockUpdateRef.current++
 		setUpLoading(true)
 		try {
-			const { data } = await http.instance.post(`/file/uploadPic`, formData)
+			const { data } = await http.file.upload(formData)
 			if (data.success) {
 				let newFileList
 				if (only) {

@@ -10,7 +10,7 @@ export const useUploadFile = () => {
 			const formData = new FormData()
 			formData.append('file', file)
 
-			const { data } = await http.instance.post(`/file/upload`, formData)
+			const { data } = await http.file.upload(formData)
 			if (data.success) {
 				message.success('上傳成功')
 				return { success: true, id: data.data.id, name: file.name }

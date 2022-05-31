@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useQueryString } from '@yoimu/react-web-lib'
 import { useAsync } from '@/hooks/use-async'
-import { useHttp } from '@/core/hooks/http/use-http'
 
 /**
  * @type {
- *   <T extends Object, K extends keyof T>(httpPath: string, initQueryString: T) => {
+ *   <T extends Object, K extends keyof T>(httpFunc: (params?: any) => Promise<any>, initQueryString: T) => {
  *     getList: () => Promise<void>,
  *     dataSource: any[],
  *     total: number,
@@ -18,8 +17,7 @@ import { useHttp } from '@/core/hooks/http/use-http'
  *   }
  * }
  */
-export const useAsyncList = (httpPath, initQueryString) => {
-	const http = useHttp()
+export const useAsyncList = (httpFunc, initQueryString) => {
 	const [queryString, setQueryString] = useQueryString({
 		number: 1,
 		size: 10,
@@ -27,7 +25,7 @@ export const useAsyncList = (httpPath, initQueryString) => {
 	})
 	const [search, setSearch] = useState({ ...queryString })
 	const [[dataSource, total], loading, getList] = useAsync(async () => {
-		const { data } = await http.instance.post(httpPath, queryString)
+		const { data } = await httpFunc(queryString)
 		return [data.data?.content ?? [], data.data?.totalElements ?? 0]
 	})
 	const onChangeSearch = key => value =>

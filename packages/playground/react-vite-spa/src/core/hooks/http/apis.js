@@ -10,6 +10,12 @@ export const NO_ERROR_MESSAGE = 1 // api 返回報錯不會自動跳錯誤訊息
 export const injectApis = instance => {
 	return {
 		login: data => instance.post('/login', data, { NONE_AUTH }),
+		file: {
+			upload: formData => instance.post('/file/upload', formData),
+		},
+		excel: {
+			members: () => instance.get('/excel/member', { responseType: 'blob' }),
+		},
 		todo: {
 			list: () => instance.post('/todo/list'),
 		},
