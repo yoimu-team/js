@@ -1,4 +1,4 @@
-import { Version } from '@/core/components/layout/version'
+import { Version } from '@/core/components/layout/component/version'
 
 export const CardWrap = ({ children }) => {
 	return (

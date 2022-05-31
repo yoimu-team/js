@@ -29,20 +29,6 @@ function service() {
 		null,
 	)
 	const { on } = useMitt()
-	// 基礎身分權限用
-	// const checkPermission = useCallback(
-	// 	(permissionLevel = ERoleType.d[ERoleType.SUPER_USER]) => {
-	// 		if (auth == null) return false
-	// 		if (permissionLevel != null) {
-	// 			if (ERoleType.d[auth.write_role_key] >= permissionLevel) {
-	// 				return true
-	// 			}
-	// 			return false
-	// 		}
-	// 		return true
-	// 	},
-	// 	[auth],
-	// )
 
 	const clearAuthState = useCallback(() => {
 		setAuth(null)
@@ -59,7 +45,6 @@ function service() {
 	return {
 		auth,
 		setAuth,
-		//checkPermission,
 		token,
 		setToken,
 		clearAuthState,

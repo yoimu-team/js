@@ -1,6 +1,6 @@
-import { Header } from '@/core/components/layout/header'
-import { SideMenu } from '@/core/components/layout/side-menu'
-import { Version } from '@/core/components/layout/version'
+import { Header } from '@/core/components/layout/component/header'
+import { SideMenu } from '@/core/components/layout/component/side-menu'
+import { Version } from '@/core/components/layout/component/version'
 import { LayoutProvider } from '@/core/components/layout/service'
 import { ContentWrapper } from '@/core/components/content-wrapper'
 

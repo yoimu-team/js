@@ -1,9 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+import { useCheckInjectReturn, useSafeState } from '@yoimu/react-common-lib'
+import produce from 'immer'
 
 /**
  * 瀑布流獲取數據
  * @type {
- *   (getList: (params: { size: number, number: number }) => Promise<void>, options: { createdRun?: boolean, size?: number, range?: number, el?: window | HTMLElement }) => {
+ *   (
+ *   	getList: (params: { pageSize: number, pageNumber: number }) => Promise<void>,
+ *   	options: {
+ *   		createdRun?: boolean,
+ *   		size?: number,
+ *   		range?: number,
+ *   		el?: window | HTMLElement,
+ *   		disabled?: boolean
+ *   	}) => {
  *     list: any[],
  *     setList: (getter: (e: any[]) => any[] | any[]) => void,
  *     loading: boolean,
@@ -13,37 +23,55 @@ import { useCallback, useEffect, useRef, useState } from 'react'
  *   }
  * }
  */
-export const useWaterfall = (
-	getList,
-	options = {}
-) => {
-	const { createdRun = true, size = 10, range = 0.95, el = window } = options
-	const [isEnd, setIsEnd] = useState(false)
-	const [list, setList] = useState([])
-	const [loading, setLoading] = useState(false)
+export const useWaterfall = (getList, options = {}) => {
+	const {
+		createdRun = true,
+		size = 18,
+		range = 0.95,
+		el = window,
+		disabled = false,
+	} = options
+	const [isEnd, setIsEnd] = useSafeState(false)
+	const [list, setList] = useSafeState([])
+	const [loading, setLoading] = useSafeState(false)
+	const loadingRef = useRef(false)
 	const pagination = useRef({
 		total: 0,
 		size,
-		number: 1,
+		number: 0,
 	})
 	const start = () => setIsEnd(false)
 	const end = () => setIsEnd(true)
 
 	const run = useCallback(
 		async (reset = false) => {
-			setLoading(true)
+			loadingRef.current = true
+			if (checkInjectRef.current.loading) {
+				setLoading(true)
+			}
 			setIsEnd(true)
-			if (reset) pagination.current.number = 1
-			const { data } = await getList({
-				size,
-				number: pagination.current.number,
-			})
-			pagination.current.total = data.data.totalElements ?? 0
-			if (data.success) {
+			if (reset) pagination.current.number = 0
+			const { status, data } = await getList(
+				{
+					pageSize: size,
+					pageNumber: pagination.current.number,
+				},
+				reset,
+			)
+			pagination.current.total = data.totalElements ?? 0
+			if (status === 200) {
 				if (reset) {
-					setList(data.data.content)
+					setList(data.content)
 				} else {
-					setList(e => [...e, ...data.data.content])
+					setList(
+						produce(e => {
+							if (data.content != null) {
+								data.content.forEach(f => {
+									e.push(f)
+								})
+							}
+						}),
+					)
 				}
 				if (
 					!(
@@ -55,9 +83,12 @@ export const useWaterfall = (
 					setIsEnd(false)
 				}
 			} else {
-				pagination.current.number = 1
+				pagination.current.number = 0
 			}
-			setLoading(false)
+			loadingRef.current = false
+			if (checkInjectRef.current.loading) {
+				setLoading(false)
+			}
 		},
 		[getList],
 	)
@@ -69,13 +100,13 @@ export const useWaterfall = (
 		const elHeight = innerHeight ?? clientHeight
 		const st = yOffset + elHeight
 		const r = st / scrollHeight
-		if (!loading && r > range) {
+		if (!loadingRef.current && !disabled && r > range) {
 			run()
 		}
-	}, [getList, loading, range])
+	}, [getList, range])
 
 	useEffect(() => {
-		if (createdRun) run()
+		if (createdRun && !disabled) run()
 	}, [])
 
 	useEffect(() => {
@@ -85,5 +116,10 @@ export const useWaterfall = (
 		}
 	}, [getList, _onScroll, isEnd, el])
 
-	return { list, setList, loading, start, end, run }
+	const [returnValue, checkInjectRef] = useCheckInjectReturn(
+		{ list, setList, loading, start, end, run },
+		['list', 'loading'],
+	)
+
+	return returnValue
 }

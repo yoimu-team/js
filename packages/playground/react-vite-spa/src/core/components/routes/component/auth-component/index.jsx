@@ -3,10 +3,9 @@ import { useValidateAuth } from '@/core/hooks/use-validate-auth'
 import { EAuthCode } from '@/core/hooks/use-auth'
 import { RouteContent } from '@/core/components/routes/route-content'
 import { IdentityAuthing } from '@/core/components/routes/component/auth-component/identity-authing'
+import { NoRolePermission } from '@/core/components/routes/component/auth-component/no-role-permission'
 
-export const AuthComponent = ({
-	component: RouteComponent /*, permissionLevel, 基礎身分權限用*/,
-}) => {
+export const AuthComponent = ({ component: RouteComponent }) => {
 	const code = useValidateAuth()
 
 	return code === EAuthCode.validating ? (
@@ -14,7 +13,6 @@ export const AuthComponent = ({
 	) : code === EAuthCode.authError || code === EAuthCode.notLogin ? (
 		<Redirect to={'/login'} />
 	) : (
-		// : code === EAuthCode.noRolePermission ? (<NoRolePermission />) 基礎身分權限用
 		<RouteContent Component={RouteComponent} />
 	)
 }
