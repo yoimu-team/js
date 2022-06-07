@@ -4,6 +4,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '@/core/hooks/use-auth'
 import { useHttp } from '@/core/hooks/http/use-http'
+import { useLoading } from '@yoimu/react-common-lib'
 
 const initialUsername = import.meta.env.VITE_USERNAME
 const initialPassword = import.meta.env.VITE_PASSWORD
@@ -13,12 +14,11 @@ export default () => {
 	const http = useHttp()
 	const setAuth = useAuth(e => e.setAuth)
 	const setToken = useAuth(e => e.setToken)
-	const [submitLoading, setSubmitLoading] = useState(false)
+	const { loading: confirmLoading, useLoadingCall: useConfirmLoadingCall } =
+		useLoading()
 
-	const onLogin = async _data => {
-		setSubmitLoading(true)
+	const onLogin = useConfirmLoadingCall(async _data => {
 		const { success } = await { success: false }
-		setSubmitLoading(false)
 
 		if (success) {
 			setAuth(undefined)
@@ -26,7 +26,7 @@ export default () => {
 			message.success('登入成功')
 			history.replace('/')
 		}
-	}
+	})
 
 	return (
 		<>
@@ -58,7 +58,7 @@ export default () => {
 					<Link to={'/register'}>
 						<Button className="mr-2">註冊</Button>
 					</Link>
-					<Button type="primary" htmlType="submit" loading={submitLoading}>
+					<Button type="primary" htmlType="submit" loading={confirmLoading}>
 						登入
 					</Button>
 				</div>

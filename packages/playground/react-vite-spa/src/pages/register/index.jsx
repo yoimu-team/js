@@ -4,11 +4,13 @@ import { Link, useHistory } from 'react-router-dom'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 import { useAuth } from '@/core/hooks/use-auth'
 import { useHttp } from '@/core/hooks/http/use-http'
+import { useLoading } from '@yoimu/react-common-lib'
 
 export default () => {
 	const history = useHistory()
 	const http = useHttp()
-	const [submitLoading, setSubmitLoading] = useState(false)
+	const { loading: confirmLoading, useLoadingCall: useConfirmLoadingCall } =
+		useLoading()
 	const setAuth = useAuth(e => e.setAuth)
 	const setToken = useAuth(e => e.setToken)
 
@@ -29,10 +31,8 @@ export default () => {
 		[],
 	)
 
-	const onRegister = async _data => {
-		setSubmitLoading(true)
+	const onRegister = useConfirmLoadingCall(async _data => {
 		const { success } = await { success: false }
-		setSubmitLoading(false)
 
 		if (success) {
 			setAuth(undefined)
@@ -40,7 +40,7 @@ export default () => {
 			message.success('註冊成功')
 			history.replace('/login')
 		}
-	}
+	})
 
 	return (
 		<>
@@ -91,7 +91,7 @@ export default () => {
 					<Link to={'/login'}>
 						<Button className={'mr-2'}>返回登入</Button>
 					</Link>
-					<Button type={'primary'} htmlType={'submit'} loading={submitLoading}>
+					<Button type={'primary'} htmlType={'submit'} loading={confirmLoading}>
 						註冊
 					</Button>
 				</div>
