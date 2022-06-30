@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import { Button, Form, Input, message } from 'antd'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useAuth } from '@/core/hooks/use-auth'
 import { useHttp } from '@/core/hooks/http/use-http'
 import { useLoading } from '@yoimu/react-common-lib'
@@ -17,12 +16,14 @@ export default () => {
 	const { loading: confirmLoading, useLoadingCall: useConfirmLoadingCall } =
 		useLoading()
 
-	const onLogin = useConfirmLoadingCall(async _data => {
-		const { success } = await { success: false }
+	const onLogin = useConfirmLoadingCall(async d => {
+		const { success, accessToken, ...profile } = await http.fake.login({
+			username: d.username,
+		})
 
 		if (success) {
-			setAuth(undefined)
-			setToken(undefined)
+			setAuth(profile)
+			setToken(accessToken)
 			message.success('登入成功')
 			history.replace('/')
 		}
@@ -55,9 +56,6 @@ export default () => {
 					/>
 				</Form.Item>
 				<div className="text-right">
-					<Link to={'/register'}>
-						<Button className="mr-2">註冊</Button>
-					</Link>
 					<Button type="primary" htmlType="submit" loading={confirmLoading}>
 						登入
 					</Button>

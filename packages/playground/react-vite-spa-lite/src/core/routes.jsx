@@ -5,6 +5,9 @@ import { withSuspenseRoute } from '@/core/components/routes/with-suspense-route'
 import { RouteWrapper } from '@/core/components/routes/route-wrapper'
 import { LayoutFallback } from '@/core/components/fallback/layout-fallback'
 import { CardWrap } from '@/core/components/card-wrap'
+import { withSuspensePrivateRoute } from '@/core/components/routes/with-suspense-private-route'
+import { Layout } from '@/core/components/layout'
+import { withSideKey } from '@/core/components/routes/with-funcs/with-side-key'
 
 export const Routes = () => {
 	return (
@@ -18,6 +21,18 @@ export const Routes = () => {
 					withTitle('登入'),
 				)}
 				layout={CardWrap}
+			/>
+
+			<RouteWrapper
+				path={'/'}
+				exact
+				component={withSuspensePrivateRoute(
+					lazy(() => import('@/pages/home')),
+					LayoutFallback,
+					withTitle('首頁'),
+					withSideKey('/'),
+				)}
+				layout={Layout}
 			/>
 
 			<RouteWrapper

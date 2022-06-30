@@ -15,7 +15,7 @@ export const PageTitle = ({
 	children,
 }) => {
 	const className = useMemo(
-		() => mergeWords('flex-1 bg-gray-100 px-2', pclassName && pclassName),
+		() => mergeWords('flex-1 bg-gray-100 px-2', pclassName),
 		[],
 	)
 	const history = useHistory()
