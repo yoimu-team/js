@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Button, Form, Input, message } from 'antd'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 import { Link, useHistory } from 'react-router-dom'
@@ -17,12 +16,14 @@ export default () => {
 	const { loading: confirmLoading, useLoadingCall: useConfirmLoadingCall } =
 		useLoading()
 
-	const onLogin = useConfirmLoadingCall(async _data => {
-		const { success } = await { success: false }
+	const onLogin = useConfirmLoadingCall(async d => {
+		const { success, accessToken, ...profile } = await http.fake.login({
+			username: d.username,
+		})
 
 		if (success) {
-			setAuth(undefined)
-			setToken(undefined)
+			setAuth(profile)
+			setToken(accessToken)
 			message.success('登入成功')
 			history.replace('/')
 		}

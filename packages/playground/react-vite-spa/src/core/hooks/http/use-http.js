@@ -3,8 +3,8 @@ import { useAuth } from '@/core/hooks/use-auth'
 import { useMitt } from '@/core/hooks/use-mitt'
 import { AUTHORIZATION_FAILED } from '@/core/mitt-type'
 import { message } from 'antd'
-import { createHttp } from '@/core/hooks/http/lib'
-import { injectApis, NO_AUTH } from '@/core/hooks/http/apis'
+import { createHttp, NO_AUTH, NO_ERROR_MESSAGE } from '@/core/hooks/http/lib'
+import { injectApis } from '@/core/hooks/http/apis'
 import { createContextProvider } from '@yoimu/react-common-lib'
 
 const service = () => {

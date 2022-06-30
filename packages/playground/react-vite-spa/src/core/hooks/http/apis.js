@@ -1,15 +1,12 @@
 import { AxiosInstance } from 'axios'
-
-// config 帶入 key-value 用
-export const NO_AUTH = 0 // header 不會傳 auth 出去
-export const NO_ERROR_MESSAGE = 1 // api 返回報錯不會自動跳錯誤訊息窗
+import { NO_AUTH } from '@/core/hooks/http/lib'
 
 /**
  * @param instance AxiosInstance
  */
 export const injectApis = instance => {
 	return {
-		login: data => instance.post('/login', data, { NONE_AUTH }),
+		login: data => instance.post('/login', data, { NO_AUTH }),
 		file: {
 			upload: formData => instance.post('/file/upload', formData),
 		},
@@ -18,6 +15,31 @@ export const injectApis = instance => {
 		},
 		todo: {
 			list: () => instance.post('/todo/list'),
+		},
+		fake: {
+			login: ({ username }) =>
+				new Promise(res =>
+					setTimeout(() => {
+						res({
+							success: true,
+							accessToken: 'nice.guy',
+							account: username,
+							name: 'frank',
+						})
+					}, 1000),
+				),
+			profile: () =>
+				new Promise(res =>
+					setTimeout(() => {
+						res({
+							success: true,
+							data: {
+								account: import.meta.env.VITE_USERNAME,
+								name: 'frank',
+							},
+						})
+					}, 1000),
+				),
 		},
 	}
 }

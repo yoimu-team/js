@@ -1,6 +1,10 @@
 import { useMemo } from 'react'
 import { Menu } from 'antd'
-import { OrderedListOutlined, ScheduleOutlined } from '@ant-design/icons'
+import {
+	HomeOutlined,
+	OrderedListOutlined,
+	ScheduleOutlined,
+} from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { useLayout } from '@/core/components/layout/service'
 
@@ -18,6 +22,9 @@ export const SideMenu = () => {
 				inlineCollapsed={menuCollapsed}
 				selectedKeys={selectedKeys}
 			>
+				<Item key={'/'} icon={<HomeOutlined />}>
+					<Link to={'/'}>首頁</Link>
+				</Item>
 				<SubMenu key={'nesting'} title={'嵌套選單'}>
 					<SubMenu key={'nesting-1'} title={'第二層'}>
 						<Item key={'nesting-1-1'} icon={<ScheduleOutlined />}>
