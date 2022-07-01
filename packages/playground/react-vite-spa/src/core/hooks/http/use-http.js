@@ -5,7 +5,7 @@ import { AUTHORIZATION_FAILED } from '@/core/mitt-type'
 import { message } from 'antd'
 import { createHttp, NO_AUTH, NO_ERROR_MESSAGE } from '@/core/hooks/http/lib'
 import { injectApis } from '@/core/hooks/http/apis'
-import { createContextProvider } from '@yoimu/react-common-lib'
+import { createProvider } from '@yoimu/react-common-lib'
 
 const service = () => {
 	const token = useAuth(e => e.token)
@@ -50,6 +50,6 @@ const service = () => {
 }
 
 export const { Provider: HttpProvider, inject: useHttp } =
-	createContextProvider(service)
+	createProvider(service)
 
 // TODO 缺 401 403 cancel api
