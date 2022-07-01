@@ -27,7 +27,9 @@ type Paths<T, D extends number = 10> = [D] extends [never]
 	: ''
 
 type ServiceProvider = (prop: { children: ReactElement }) => ReactElement
-type ServiceInject<T> = <V>(getter: (e: T) => V) => V
+type ServiceInject1<T> = <V>(getter: (e: T) => V) => V
+type ServiceInject2<T> = () => T
+type ServiceInject<T> = ServiceInject1<T> & ServiceInject2<T>
 type ContextServiceInject<T> = () => T
 
 export function createI18n<
