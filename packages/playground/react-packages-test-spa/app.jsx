@@ -1,13 +1,11 @@
 import ReactDOM from 'react-dom'
 import { V6RouterFirstApp } from '@/components/v6-router-first-app'
-
-const App = () => {
-	return <V6RouterFirstApp />
-}
+import { AuthApp } from '@/components/auth-app'
+import '@/style/app.scss'
 
 ReactDOM.render(
 	// <React.StrictMode>
-	<App />,
+	<AuthApp />,
 	// </React.StrictMode>,
 	document.getElementById('root'),
 )
