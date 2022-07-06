@@ -1,5 +1,5 @@
 {
-  "name": "@yoimu/cli",
+  "name": "@yoimu/build-app",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
