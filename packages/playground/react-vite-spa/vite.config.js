@@ -56,6 +56,22 @@ export default ({ mode }) => {
 				'@i18n': path.resolve(__dirname, 'src/core/i18n'),
 			},
 		},
+		build: {
+			rollupOptions: {
+				output: {
+					// 如果是 public 的資源放到 assets/public/ 內，否則放到 assets 內，為了讓爬蟲比較好爬，盡可能都使用這段配置(不管有沒有要 SEO)
+					assetFileNames: assetInfo => {
+						const matchPublicResource = assetInfo.name.match(
+							/(\/public\/|\\public\\|\\\\public\\\\)+.+\.([a-z]+)$/i,
+						)
+						const fileName = '[name]-[hash][extname]'
+						return matchPublicResource
+							? `assets/public/${fileName}`
+							: `assets/${fileName}`
+					},
+				},
+			},
+		},
 		server: {
 			port: process.env.VITE_PORT,
 			proxy: {
