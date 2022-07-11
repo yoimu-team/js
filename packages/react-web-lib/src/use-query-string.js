@@ -68,50 +68,55 @@ export const useQueryString = (initialState = {}) => {
 	const location = useLocation()
 	const history = useHistory()
 	const [state, setState] = useSafeState(initState(initialState, location))
-	const isInit = useRef(true)
-	const isInitReplace = useRef(false)
-	const isManualChangeLink = useRef(true)
+	const isInitRef = useRef(true)
+	const isInitReplaceRef = useRef(false)
+	const isManualChangeLinkRef = useRef(true)
+	const isUpdateReplaceRef = useRef(false)
 
-	const checkThenUpdateHistory = useCallback(state => {
+	const checkThenUpdateHistory = useCallback((state, replace = false) => {
 		const queryState = transformState(state)
+		const fnPropName = replace ? 'replace' : 'push'
 		if (queryState == null) {
-			history.push(location.pathname)
+			history[fnPropName](location.pathname)
 		} else {
-			history.push(encodeURI(transformQueryMapToString(queryState)))
+			history[fnPropName](encodeURI(transformQueryMapToString(queryState)))
 		}
 	}, [])
 
 	const updateState = useCallback(
-		cb => {
+		(cb, { replace = false } = {}) => {
 			const _state = typeof cb === 'function' ? cb(state) : cb
-			if (isManualChangeLink.current) isManualChangeLink.current = false
+			if (isManualChangeLinkRef.current) isManualChangeLinkRef.current = false
+			if (replace) isUpdateReplaceRef.current = true
 			setState(_state)
 		},
 		[state],
 	)
 
 	useEffect(() => {
-		if (!isInit.current) {
-			if (!isManualChangeLink.current) {
-				checkThenUpdateHistory(state)
-				isManualChangeLink.current = false
+		if (!isInitRef.current) {
+			if (!isManualChangeLinkRef.current) {
+				checkThenUpdateHistory(state, isUpdateReplaceRef.current)
+				isManualChangeLinkRef.current = false
+				if (isUpdateReplaceRef.current) isUpdateReplaceRef.current = false
 			}
 		}
 	}, [state])
 
 	useEffect(() => {
-		if (!isInit.current) {
-			if (!isInitReplace.current) {
-				if (isManualChangeLink.current) {
+		console.log(2, isManualChangeLinkRef.current)
+		if (!isInitRef.current) {
+			if (!isInitReplaceRef.current) {
+				if (isManualChangeLinkRef.current) {
 					setState(initState(initialState, location))
 				} else {
-					isManualChangeLink.current = true
+					isManualChangeLinkRef.current = true
 				}
 			} else {
-				isInitReplace.current = false
+				isInitReplaceRef.current = false
 			}
 		} else {
-			isInit.current = false
+			isInitRef.current = false
 		}
 	}, [location])
 
@@ -119,7 +124,7 @@ export const useQueryString = (initialState = {}) => {
 		if (!location.search) {
 			const queryState = transformState(state)
 			if (queryState != null) {
-				isInitReplace.current = true
+				isInitReplaceRef.current = true
 				history.replace(encodeURI(transformQueryMapToString(queryState)))
 			}
 		}
