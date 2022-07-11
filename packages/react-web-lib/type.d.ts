@@ -22,6 +22,6 @@ export function createBreakpoints<T extends object, K extends keyof T>(
 
 export function useQueryString<T extends object>(
 	initialState: T,
-): [T, (value: SetStateAction<T>, options?: { replace: boolean }) => void]
+): [T, (value: SetStateAction<T>, options?: { replace?: boolean }) => void]
 
 export function useTitle(title: string, restoreOnUnmount?: boolean): string
