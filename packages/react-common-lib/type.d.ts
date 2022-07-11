@@ -31,6 +31,7 @@ type ServiceInject1<T> = <V>(getter: (e: T) => V) => V
 type ServiceInject2<T> = () => T
 type ServiceInject<T> = ServiceInject1<T> & ServiceInject2<T>
 type ContextServiceInject<T> = () => T
+type ProviderHOC = (children: ReactElement) => ReactElement
 
 export function createI18n<
 	T extends object,
@@ -76,12 +77,18 @@ export function createMitt(): {
 	}
 }
 
-export function createProvider<T>(providerService: () => T): {
+export function createProvider<T>(
+	providerService: () => T,
+	HOC?: ProviderHOC,
+): {
 	Provider: ServiceProvider
 	inject: ServiceInject<T>
 }
 
-export function createContextProvider<T>(providerService: () => T): {
+export function createContextProvider<T>(
+	providerService: () => T,
+	HOC?: ProviderHOC,
+): {
 	Provider: ServiceProvider
 	inject: ContextServiceInject<T>
 }
