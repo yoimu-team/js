@@ -104,7 +104,6 @@ export const useQueryString = (initialState = {}) => {
 	}, [state])
 
 	useEffect(() => {
-		console.log(2, isManualChangeLinkRef.current)
 		if (!isInitRef.current) {
 			if (!isInitReplaceRef.current) {
 				if (isManualChangeLinkRef.current) {
