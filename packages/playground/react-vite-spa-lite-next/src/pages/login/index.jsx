@@ -24,6 +24,7 @@ export default () => {
 		if (success) {
 			setAuth(profile)
 			setToken(accessToken)
+			//test
 			message.success('登入成功')
 			history.replace('/')
 		}
