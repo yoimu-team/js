@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import { useMitt } from '@/core/hooks/use-mitt'
 import { AUTHORIZATION_FAILED } from '@/core/mitt-type'
 import { declareEnum } from '@yoimu/common-lib'
@@ -22,7 +22,7 @@ export const { Provider: AuthProvider, inject: useAuth } =
 	createProvider(service)
 
 function service() {
-	const history = useHistory()
+	// const history = useHistory()
 	const [auth, setAuth] = useState(null) // Object | null
 	const [token, setToken] = useLocalStorageState(
 		`${import.meta.env.VITE_PROJECT_NAME}_token`,

@@ -1,6 +1,6 @@
 import { Button, Form, Input, message } from 'antd'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/core/hooks/use-auth'
 import { useHttp } from '@/core/hooks/http/use-http'
 import { useLoading } from '@yoimu/react-common-lib'
@@ -9,7 +9,7 @@ const initialUsername = import.meta.env.VITE_USERNAME
 const initialPassword = import.meta.env.VITE_PASSWORD
 
 export default () => {
-	const history = useHistory()
+	const navigate = useNavigate()
 	const http = useHttp()
 	const setAuth = useAuth(e => e.setAuth)
 	const setToken = useAuth(e => e.setToken)
@@ -25,7 +25,7 @@ export default () => {
 			setAuth(profile)
 			setToken(accessToken)
 			message.success('登入成功')
-			history.replace('/')
+			navigate('/', { replace: true })
 		}
 	})
 
